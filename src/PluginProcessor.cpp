@@ -26,7 +26,7 @@ float AudioPluginAudioProcessor::tone_fucker(float sample, float gain, float thr
     float fuzzed_sample = std::tanh(gain * sample);
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_real_distribution<float> dis(-thresh * 0.1f, thresh * 0.1f);
+    std::uniform_real_distribution<float> dis(-thresh * 0.3f, thresh * 0.3f);
     float noise = 0.0f;
     if (std::abs(sample) > 0.001f)
         noise = dis(gen);
@@ -53,8 +53,6 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
         auto* channelData = buffer.getWritePointer (channel);
-        //juce::ignoreUnused (channelData);
-        // ..do something to the data...
         for (int sample = 0; sample < buffer.getNumSamples(); ++sample)
             channelData[sample] = tone_fucker(channelData[sample], fuzz_gain->get(), fuzz_gain->get() / 200);
     }
