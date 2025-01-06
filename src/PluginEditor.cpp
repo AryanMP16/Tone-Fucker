@@ -11,10 +11,10 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
 {
     juce::ignoreUnused (processorRef);
 
-    juce::File pressed_file("C:/Users/aryan/Desktop/plugin/pedal_pressed.png");
+    juce::File pressed_file("C:/Users/aryan/onedrive/Desktop/tone_fucker/pedal_pressed.png");
     juce::Image pressed = juce::ImageFileFormat::loadFrom(pressed_file);
 
-    juce::File unpressed_file("C:/Users/aryan/Desktop/plugin/pedal_unpressed.png");
+    juce::File unpressed_file("C:/Users/aryan/onedrive/Desktop/tone_fucker/pedal_unpressed.png");
     juce::Image unpressed = juce::ImageFileFormat::loadFrom(unpressed_file);
 
     on_off.setClickingTogglesState(true);
@@ -56,7 +56,7 @@ AudioPluginAudioProcessorEditor::~AudioPluginAudioProcessorEditor()
 //==============================================================================
 
 bool AudioPluginAudioProcessorEditor::loadImage() {
-    juce::File file("C:/Users/aryan/Desktop/plugin/background.png");
+    juce::File file("C:/Users/aryan/onedrive/Desktop/tone_fucker/background.png");
     if (file.exists())
         background = juce::ImageFileFormat::loadFrom(file);
     else
