@@ -3,12 +3,48 @@
 #include <cmath>
 #include <random>
 #include <iostream>
+#include <stdlib.h>
 
 //==============================================================================
 //==============================================================================
 //Stuff i wrote
 //==============================================================================
 //==============================================================================
+
+struct ring_buffer* AudioPluginAudioProcessor::create_ring_buffer(size_t capacity) {
+  ring_buffer* to_return = (ring_buffer*)malloc(sizeof(ring_buffer));
+  to_return->index = 0;
+  to_return->capacity = capacity;
+  to_return->head = (float*)malloc(capacity * sizeof(float));
+
+  return to_return;
+}
+
+float impulse_response(size_t i) {
+  return (float)i; //temporary
+}
+
+float AudioPluginAudioProcessor::FIR_bandpass_filter(float sample, struct ring_buffer* buffer) {
+  buffer->head[buffer->index] = sample;
+  buffer->index++;
+  if (buffer->index == buffer->capacity)
+    buffer->index = 0;
+
+  float filtered_sample = 0;
+  size_t sum_index = buffer->index;
+  
+  for (size_t i = 0; i < buffer->capacity; i++) {
+    if (sum_index > 0)
+      sum_index--;
+    else
+      sum_index = buffer->capacity - 1;
+
+    filtered_sample += impulse_response(i) * buffer->head[sum_index];
+  }
+
+  return filtered_sample;
+}
+
 AudioPluginAudioProcessor::AudioPluginAudioProcessor()
      : AudioProcessor (BusesProperties()
                      #if ! JucePlugin_IsMidiEffect
