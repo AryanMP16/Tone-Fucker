@@ -28,9 +28,8 @@ $$h[n] = \frac{W}{\pi} \text{sinc}(\frac{nW}{2})\cos(\omega_0 n)$$
 There are some problems with this solution, though. Most importantly, the system is non-causal. To make it causal, we need to shift our signal and multiply it by some \textit{cropping} function, $c[n]$. 
 $$c[n] = \Theta(n + \frac{L}{2}) - \Theta(n - \frac{L}{2})$$
 $$h_\text{cropped}[n] = c[n] \times (h[n] * \delta(L/2))$$
-There are various types of windows. I will use a square window as it is the simplest.
 $$h_\text{cropped}[n] = (\Theta(n + \frac{L}{2}) - \Theta(n - \frac{L}{2})) \frac{W}{\pi} \text{sinc}(\frac{(n-\frac{L}{2})W}{2})\cos(\omega_0 (n-\frac{L}{2}))$$
-For my specifications ($\omega_0 = 1300$, $W = 200$) and using $L = 1$, we get the following windowed sinc:
+For my specifications ($\omega_0 = 1300$, $W = 200$) and using $L = 1$, we get the following cropped sinc:
 \begin{center}
 \includegraphics[scale=0.3]{cropped_sinc.png} 
 \end{center}

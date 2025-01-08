@@ -9,14 +9,14 @@ output_file = "algorithm_test.wav"
 data, samplerate = sf.read(input_file)
 
 def impulse_response(i):
-    L = 1
-    W = 200
-    w_0 = 1300
-    ir = np.sin(i * np.pi / L) * W/np.pi * np.cos(w_0 * (i * L/2)) * np.sin(W * (i - L/2) * 0.5) / (0.5 * W * (i - L/2))
+    L = 3
+    W = 200 * 2 * np.pi
+    w_0 = 1300 * 2 * np.pi
+    ir = np.sin(i * np.pi / L) * W/np.pi * np.cos(w_0 * (i - L/2)) * np.sinc(W * (i - L/2) * 0.5)
     if i < 0 or i > L:
         return 0
     else:
-        return ir/(1000 * 200);
+        return ir/60000;
 
 class ring_buffer:
     def __init__(self, capacity: int):
@@ -60,7 +60,7 @@ def algorithm(sample, gain, thresh):
 
 def processor(samples):
     modified_samples = []
-    buf = ring_buffer(5);
+    buf = ring_buffer(3);
     
     for channel in samples.T:
         modified_channel = []
@@ -77,18 +77,21 @@ print("Success.\n")
 
 sf.write(output_file, modified_data, samplerate)
 
-N = len(data)
 N_mod = len(modified_data)
 fft_data = np.fft.fft(data)
 fft_data_mod = np.fft.fft(modified_data)
 
-magnitude = np.abs(fft_data)
-magnitude_mod = np.abs(fft_data_mod)
+N = len(data)
+h_FIR = []
+for i in range(N):
+    h_FIR.append(impulse_response(i * 1/samplerate))
+fft_h_FIR = np.fft.fft(h_FIR)
 
-freqs = np.fft.fftshift(np.fft.fftfreq(N, 1/samplerate))
+freqs = np.fft.fftfreq(N, 1/samplerate)
 
-plt.plot(freqs, magnitude, label = "Original")
-plt.plot(freqs, magnitude_mod, label = "Processed")
+plt.plot(freqs, fft_data[:, 1], label = "Original")
+plt.plot(freqs, fft_data_mod[:, 1], label = "Processed")
+#plt.plot(freqs, np.fft.fft(h_FIR), label = "h_FIR")
 plt.title("Fourier Transforms")
 plt.xlabel("Frequency (Hz)")
 plt.ylabel("Magnitude")

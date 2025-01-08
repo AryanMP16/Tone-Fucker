@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.7)  6 JAN 2025 17:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.7)  7 JAN 2025 16:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -343,7 +343,7 @@ File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 <cropped_sinc.png, id=1, 1284.29813pt x 523.9575pt>
 File: cropped_sinc.png Graphic file (type png)
 <use cropped_sinc.png>
-Package pdftex.def Info: cropped_sinc.png  used on input line 35.
+Package pdftex.def Info: cropped_sinc.png  used on input line 34.
 (pdftex.def)             Requested size: 385.2924pt x 157.18846pt.
 
 [1
@@ -353,7 +353,7 @@ nc.png>]
 <windowed_sinc.png, id=22, 1281.78876pt x 545.53813pt>
 File: windowed_sinc.png Graphic file (type png)
 <use windowed_sinc.png>
-Package pdftex.def Info: windowed_sinc.png  used on input line 40.
+Package pdftex.def Info: windowed_sinc.png  used on input line 39.
 (pdftex.def)             Requested size: 384.5396pt x 163.6627pt.
  [2 <./windowed_sinc.png>] (math.aux)
  ***********
@@ -369,7 +369,7 @@ LaTeX Font Warning: Size substitutions with differences
 Here is how much of TeX's memory you used:
  4227 strings out of 474370
  61254 string characters out of 5740536
- 1941754 words of memory out of 5000000
+ 1940754 words of memory out of 5000000
  26578 multiletter control sequences out of 15000+600000
  567318 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -390,7 +390,7 @@ m/cmsy10.pfb><C:/Users/aryan/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
 msfonts/cm/cmsy8.pfb><C:/Users/aryan/AppData/Local/Programs/MiKTeX/fonts/type1/
 public/amsfonts/cm/cmti10.pfb><C:/Users/aryan/AppData/Local/Programs/MiKTeX/fon
 ts/type1/public/amsfonts/euler/eufm10.pfb>
-Output written on math.pdf (2 pages, 728677 bytes).
+Output written on math.pdf (2 pages, 728535 bytes).
 PDF statistics:
  84 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
